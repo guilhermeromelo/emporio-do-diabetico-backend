@@ -33,6 +33,9 @@ if (require.main === module) {
         // useful when used with OpenAPI-to-GraphQL to locate your application
         setServersFromRequest: true,
       },
+      cors: {
+        origin: '*',
+      },
     },
   };
   main(config).catch(err => {

@@ -1,7 +1,7 @@
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
 import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
+import {RestApplication, RestBindings} from '@loopback/rest';
 import {
   RestExplorerBindings,
   RestExplorerComponent,
@@ -21,6 +21,10 @@ export class EmporioDiabeticoBackendApplication extends BootMixin(
 
     // Set up the custom sequence
     this.sequence(MySequence);
+
+    this.bind(RestBindings.REQUEST_BODY_PARSER_OPTIONS).to({
+      limit: '15MB',
+    });
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
